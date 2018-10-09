@@ -26,6 +26,7 @@ android:
       - android-27
       - android-26
       - android-25
+      - android-24
       - android-22
       - build-tools-27.0.3
       - add-on
