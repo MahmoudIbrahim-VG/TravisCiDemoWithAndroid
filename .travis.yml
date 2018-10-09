@@ -26,6 +26,7 @@ android:
       - tools # Running this twice get's the latest build tools (https://github.com/codepath/android_guides/wiki/Setting-up-Travis-CI)
       - android-27
       - build-tools-27.0.3
+      - add-on
       - extra
       - extra-android-support
       - sys-img-armeabi-v7a-android-tv-l
