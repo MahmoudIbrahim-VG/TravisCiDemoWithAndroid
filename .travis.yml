@@ -24,6 +24,8 @@ android:
       - platform-tools
       - tools # Running this twice get's the latest build tools (https://github.com/codepath/android_guides/wiki/Setting-up-Travis-CI)
       - android-27
+      - android-26
+      - android-25
       - android-22
       - build-tools-27.0.3
       - add-on
@@ -32,10 +34,15 @@ android:
       - sys-img-armeabi-v7a-android-27
       - sys-img-armeabi-v7a-android-26
       - sys-img-armeabi-v7a-android-25
+      - sys-img-armeabi-v7a-android-22
       - addon-google_apis-google-27
       - addon-google_apis-google-25
+      - addon-google_apis-google-25
+      - addon-google_apis-google-22
       - sys-img-armeabi-v7a-addon-google_apis-google-27
+      - sys-img-armeabi-v7a-addon-google_apis-google-26
       - sys-img-armeabi-v7a-addon-google_apis-google-25
+      - sys-img-armeabi-v7a-addon-google_apis-google-22
   licences :
       - 'android-sdk-preview-license-.+'
       - 'android-sdk-license-.+'
@@ -45,10 +52,9 @@ android:
 # Emulator Management: Create, Start and Wait
 before_script:
   - android list targets
-  - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
+  - echo no | android create avd --force -n test -t 2 --abi armeabi-v7a
   - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
-  - while [[ `adb shell pm path android` == 'Error'* ]]; do sleep 2; done
   - adb shell input keyevent 82 &
 
 
