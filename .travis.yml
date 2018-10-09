@@ -24,14 +24,15 @@ android:
       - tools
       - platform-tools
       - tools # Running this twice get's the latest build tools (https://github.com/codepath/android_guides/wiki/Setting-up-Travis-CI)
-      - android-$ANDROID_API
-      - build-tools-$ANDROID_BUILD_TOOLS
+      - android-27
+      - build-tools-27.0.3
       - extra
       - extra-android-support
-      - addon-google_apis-google-$ANDROID_API
-      - addon-google_apis-google-$EMULATOR_API
-      - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API
-      - sys-img-armeabi-v7a-addon-google_apis-google-$EMULATOR_API
+      - sys-img-armeabi-v7a-android-tv-l
+      - addon-google_apis-google-27
+      - addon-google_apis-google-27
+      - sys-img-armeabi-v7a-addon-google_apis-google-27
+      - sys-img-armeabi-v7a-addon-google_apis-google-27
   licences :
       - 'android-sdk-preview-license-.+'
       - 'android-sdk-license-.+'
@@ -44,6 +45,7 @@ before_script:
   - echo no | android create avd --force -n test -t android-27 --abi armeabi-v7a
   - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
+  - while [[ `adb shell pm path android` == 'Error'* ]]; do sleep 2; done
   - adb shell input keyevent 82 &
 
 #script:
