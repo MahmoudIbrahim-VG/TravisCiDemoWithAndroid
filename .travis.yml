@@ -24,14 +24,14 @@ android:
       - tools
       - platform-tools
       - tools # Running this twice get's the latest build tools (https://github.com/codepath/android_guides/wiki/Setting-up-Travis-CI)
-      - android-${ANDROID_API}
-      - build-tools-${ANDROID_BUILD_TOOLS}
+      - android-$ANDROID_API
+      - build-tools-$ANDROID_BUILD_TOOLS
       - extra
       - extra-android-support
-      - addon-google_apis-google-${ANDROID_API}
-      - addon-google_apis-google-${EMULATOR_API}
-      - sys-img-armeabi-v7a-addon-google_apis-google-${ANDROID_API}
-      - sys-img-armeabi-v7a-addon-google_apis-google-${EMULATOR_API}
+      - addon-google_apis-google-$ANDROID_API
+      - addon-google_apis-google-$EMULATOR_API
+      - sys-img-armeabi-v7a-addon-google_apis-google-$ANDROID_API
+      - sys-img-armeabi-v7a-addon-google_apis-google-$EMULATOR_API
   licences :
       - 'android-sdk-preview-license-.+'
       - 'android-sdk-license-.+'
@@ -40,6 +40,7 @@ android:
 
 # Emulator Management: Create, Start and Wait
 before_script:
+  - android list targets
   - echo no | android create avd --force -n test -t android-26 --abi armeabi-v7a
   - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
